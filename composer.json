@@ -20,6 +20,7 @@
         "tightenco/ziggy": "^0.8.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
@@ -51,6 +52,12 @@
         ],
         "compile": [
             "@php artisan migrate:fresh --seed"
+        ],
+        "ide-helpers": [
+            "@php artisan ide-helper:eloquent",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite"
         ]
     },
     "extra": {

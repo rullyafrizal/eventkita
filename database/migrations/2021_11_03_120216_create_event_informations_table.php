@@ -18,6 +18,7 @@ class CreateEventInformationsTable extends Migration
             $table->string('information', 255)->nullable(false);
             $table->foreignId('event_id')->constrained('events');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
