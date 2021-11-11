@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,38 +30,19 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])
 Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
-// Dashboard
 
-Route::get('/', [DashboardController::class, 'index'])
-    ->name('dashboard')
-    ->middleware('auth');
+Route::group(['middleware' => 'auth'], function() {
+    // Dashboard
+    Route::get('/', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-// Users
+    // Users
+    Route::resource('users', UsersController::class);
+    Route::put('users/{user}/restore', [UsersController::class, 'restore'])
+        ->name('users.restore');
 
-Route::get('users', [UsersController::class, 'index'])
-    ->name('users')
-    ->middleware('auth');
+    // Roles
+    Route::resource('roles', RoleController::class);
 
-Route::get('users/create', [UsersController::class, 'create'])
-    ->name('users.create')
-    ->middleware('auth');
 
-Route::post('users', [UsersController::class, 'store'])
-    ->name('users.store')
-    ->middleware('auth');
-
-Route::get('users/{user}/edit', [UsersController::class, 'edit'])
-    ->name('users.edit')
-    ->middleware('auth');
-
-Route::put('users/{user}', [UsersController::class, 'update'])
-    ->name('users.update')
-    ->middleware('auth');
-
-Route::delete('users/{user}', [UsersController::class, 'destroy'])
-    ->name('users.destroy')
-    ->middleware('auth');
-
-Route::put('users/{user}/restore', [UsersController::class, 'restore'])
-    ->name('users.restore')
-    ->middleware('auth');
+});
