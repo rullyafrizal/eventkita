@@ -8,4 +8,11 @@ return [
         'view-admin-dashboard',
         'view-partner-dashboard'
     ],
+    'role_permissions' => [
+        'view-roles',
+        'create-role',
+        'show-role',
+        'edit-role',
+        'delete-role'
+    ]
 ];
