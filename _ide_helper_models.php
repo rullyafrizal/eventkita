@@ -26,10 +26,17 @@ namespace App\Models{
  * @property int $event_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\EventInformation[] $eventInformations
+ * @property-read int|null $event_informations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\EventPicture[] $eventPictures
+ * @property-read int|null $event_pictures_count
  * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Event onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Event query()
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereEventTypeId($value)
@@ -41,6 +48,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|Event withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Event withoutTrashed()
  */
 	class Event extends \Eloquent {}
 }
@@ -49,9 +58,13 @@ namespace App\Models{
 /**
  * App\Models\EventInformation
  *
+ * @property-read \App\Models\Event $event
  * @method static \Illuminate\Database\Eloquent\Builder|EventInformation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventInformation newQuery()
+ * @method static \Illuminate\Database\Query\Builder|EventInformation onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|EventInformation query()
+ * @method static \Illuminate\Database\Query\Builder|EventInformation withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|EventInformation withoutTrashed()
  */
 	class EventInformation extends \Eloquent {}
 }
@@ -65,14 +78,21 @@ namespace App\Models{
  * @property int $event_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Event[] $event
+ * @property-read int|null $event_count
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture newQuery()
+ * @method static \Illuminate\Database\Query\Builder|EventPicture onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture query()
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventPicture whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture whereEventId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture wherePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|EventPicture withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|EventPicture withoutTrashed()
  */
 	class EventPicture extends \Eloquent {}
 }
@@ -85,15 +105,21 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Event[] $events
+ * @property-read int|null $events_count
+ * @method static \Illuminate\Database\Eloquent\Builder|EventType filter(array $filters)
  * @method static \Illuminate\Database\Eloquent\Builder|EventType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventType newQuery()
+ * @method static \Illuminate\Database\Query\Builder|EventType onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|EventType query()
  * @method static \Illuminate\Database\Eloquent\Builder|EventType whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventType whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventType whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|EventType withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|EventType withoutTrashed()
  */
 	class EventType extends \Eloquent {}
 }
@@ -109,9 +135,10 @@ namespace App\Models{
  * @property int $is_published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
+ * @method static \Illuminate\Database\Query\Builder|News onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|News query()
  * @method static \Illuminate\Database\Eloquent\Builder|News whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
@@ -121,6 +148,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|News whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|News withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|News withoutTrashed()
  */
 	class News extends \Eloquent {}
 }
@@ -138,6 +167,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Event[] $events
+ * @property-read int|null $events_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
@@ -160,7 +191,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRole($role)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()

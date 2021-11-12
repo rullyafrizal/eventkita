@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])
     ->name('login.store')
     ->middleware('guest');
 
-Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
 
@@ -44,5 +45,9 @@ Route::group(['middleware' => 'auth'], function() {
     // Roles
     Route::resource('roles', RoleController::class);
 
+    // Event Types
+    Route::resource('event-types', EventTypeController::class);
+    Route::put('event-types/{event_type}/restore', [EventTypeController::class, 'restore'])
+        ->name('event-types.restore');
 
 });

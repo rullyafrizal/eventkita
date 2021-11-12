@@ -20,14 +20,6 @@ use Throwable;
 class UserController extends Controller
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->middleware('permission:view-users');
-    }
-
-    /**
      * @throws AuthorizationException
      */
     public function index(Request $request): Response

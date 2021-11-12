@@ -12,6 +12,8 @@
     },
     "dependencies": {
         "@braid/vue-formulate": "^2.5.2",
+        "@cone2875/vue-formulate-datetime": "^0.1.2",
+        "@fullhuman/postcss-purgecss": "^4.0.3",
         "@inertiajs/inertia": "^0.9.2",
         "@inertiajs/inertia-vue": "^0.6.2",
         "@inertiajs/progress": "^0.2.4",
@@ -27,8 +29,11 @@
         "postcss-nesting": "^7.0.1",
         "tailwindcss": "^2.0.3",
         "vue": "^2.6.11",
+        "vue-datetime": "^1.0.0-beta.14",
         "vue-loader": "^15.9.6",
         "vue-meta": "^2.3.1",
-        "vue-template-compiler": "^2.6.12"
+        "vue-template-compiler": "^2.6.12",
+        "vue2-datepicker": "^3.10.2",
+        "weekstart": "^1.1.0"
     }
 }
