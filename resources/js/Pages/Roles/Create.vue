@@ -91,6 +91,22 @@
               </label>
             </div>
           </div>
+
+          <div class="font-bold mt-2">Event Type Permissions</div>
+          <div class="grid grid-cols-3 gap-6 my-3">
+            <div v-for="permission in eventTypePermissions" :key="permission.name" class="col-span-1">
+              <label :for="permission.name">
+                <input
+                  :id="permission.name"
+                  v-model.lazy="formCreate.permissions"
+                  type="checkbox"
+                  :value="permission.name"
+                  @change="updateCheckAll"
+                />
+                {{ permission.name }}
+              </label>
+            </div>
+          </div>
         </div>
         <div class="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200 w-full justify-end">
           <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 rounded">Create</button>
@@ -117,6 +133,7 @@ export default {
     dashboardPermissions: [Array, Object],
     rolePermissions: [Array, Object],
     userPermissions: [Array, Object],
+    eventTypePermissions: [Array, Object],
   },
 
   remember: 'formCreateRole',

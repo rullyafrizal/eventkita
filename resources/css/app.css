@@ -3,9 +3,11 @@
 @import 'reset';
 
 /* Components */
-@import 'tailwindcss/components';
-@import 'buttons';
-@import 'form';
+@import "tailwindcss/components";
+@import "vue-formulate.css";
+@import "buttons";
+@import "form";
+@import "vue2-datepicker/index.css";
 
 /* Utilities */
 @import 'tailwindcss/utilities';

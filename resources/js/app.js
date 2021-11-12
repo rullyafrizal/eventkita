@@ -6,12 +6,21 @@ import { createInertiaApp } from '@inertiajs/inertia-vue'
 import VueFormulate from '@braid/vue-formulate'
 import Auth from './Mixins/Auth'
 
+/** Vue Formulate Plugins */
+import FormulateVueDatetimePlugin from '@cone2875/vue-formulate-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+
 Vue.config.productionTip = false
 Vue.mixin(Auth)
 Vue.mixin({ methods: { route: window.route } })
 Vue.use(PortalVue)
 Vue.use(VueMeta)
-Vue.use(VueFormulate)
+Vue.use(VueFormulate, {
+  plugins: [
+    /** https://www.npmjs.com/package/vue-datetime#usage */
+    FormulateVueDatetimePlugin,
+  ],
+})
 
 InertiaProgress.init()
 

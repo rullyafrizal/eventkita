@@ -5,8 +5,11 @@ return [
         'full-access'
     ],
     'dashboard_permissions' => [
-        'view-admin-dashboard',
-        'view-partner-dashboard'
+        'view-dashboard',
+        'view-users-count',
+        'view-news-count',
+        'view-events-count',
+        'view-my-events-count'
     ],
     'role_permissions' => [
         'view-roles',
@@ -22,5 +25,13 @@ return [
         'create-user',
         'delete-user',
         'restore-user',
+    ],
+    'event_type_permissions' => [
+        'view-event-types',
+        'show-event-type',
+        'edit-event-type',
+        'create-event-type',
+        'delete-event-type',
+        'restore-event-type',
     ],
 ];
