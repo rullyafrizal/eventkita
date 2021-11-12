@@ -6,8 +6,7 @@
         <label class="block text-gray-700">Role:</label>
         <select v-model="form.role" class="mt-1 w-full form-select">
           <option :value="null" />
-          <option value="user">User</option>
-          <option value="owner">Owner</option>
+          <option v-for="role in roles" :key="role" :value="role">{{ role }}</option>
         </select>
         <label class="mt-4 block text-gray-700">Trashed:</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
@@ -26,12 +25,13 @@
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Name</th>
           <th class="px-6 pt-6 pb-4">Email</th>
-          <th class="px-6 pt-6 pb-4" colspan="2">Role</th>
+          <th class="px-6 pt-6 pb-4">Roles</th>
+          <th class="px-6 pt-6 pb-4" colspan="2">Phone</th>
         </tr>
-        <tr v-for="user in users" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+        <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('users.edit', user.id)">
-              <img v-if="user.photo" class="block w-5 h-5 rounded-full mr-2 -my-2" :src="user.photo" />
+              <img v-if="user.photo" class="block w-5 h-5 rounded-full mr-2 -my-2" :src="user.photo" alt="avatar" />
               {{ user.name }}
               <icon v-if="user.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
             </inertia-link>
@@ -42,8 +42,22 @@
             </inertia-link>
           </td>
           <td class="border-t">
+            <span
+              v-if="user.roles_by_name.length > 0"
+              class="flex flex-wrap items-center px-6 py-4"
+            >
+              <span
+                v-for="(role, index) in user.roles_by_name"
+                :key="index"
+                class="justify-center px-2 py-1 mb-1 ml-1 text-xs font-bold text-white bg-green-400 rounded-full"
+              >
+                {{ role }}
+              </span>
+            </span>
+          </td>
+          <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center" :href="route('users.edit', user.id)" tabindex="-1">
-              {{ user.owner ? 'Owner' : 'User' }}
+              {{ user.phone }}
             </inertia-link>
           </td>
           <td class="border-t w-px">
@@ -52,7 +66,7 @@
             </inertia-link>
           </td>
         </tr>
-        <tr v-if="users.length === 0">
+        <tr v-if="users.data.length === 0">
           <td class="border-t px-6 py-4" colspan="4">No users found.</td>
         </tr>
       </table>
@@ -76,8 +90,9 @@ export default {
   },
   layout: Layout,
   props: {
-    filters: Object,
-    users: Array,
+    filters: [Object, Array],
+    users: [Object, Array],
+    roles: [Object, Array],
   },
   data() {
     return {
@@ -92,7 +107,7 @@ export default {
     form: {
       deep: true,
       handler: throttle(function() {
-        this.$inertia.get(this.route('users'), pickBy(this.form), { preserveState: true })
+        this.$inertia.get(this.route('users.index'), pickBy(this.form), { preserveState: true })
       }, 150),
     },
   },

@@ -10,4 +10,7 @@ class News extends Model
 {
     use HasFactory,
         SoftDeletes;
+
+    protected $table = 'news';
+    protected $guarded = [];
 }

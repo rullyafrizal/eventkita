@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,6 +40,20 @@ class User extends Authenticatable
             } elseif ($trashed === 'only') {
                 $query->onlyTrashed();
             }
+        })->when($filters['role'] ?? null, function($query, $role) {
+            $query->whereHas('roles', function (Builder $query) use ($role) {
+                $query->where('name', $role);
+            });
         });
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 }
