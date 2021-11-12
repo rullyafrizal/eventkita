@@ -23,6 +23,9 @@ class ListPermission
                 ->get('name'),
             'rolePermissions' => Permission::query()
                 ->whereIn('name', config('permission-list.role_permissions'))
+                ->get('name'),
+            'userPermissions' => Permission::query()
+                ->whereIn('name', config('permission-list.user_permissions'))
                 ->get('name')
         ];
     }

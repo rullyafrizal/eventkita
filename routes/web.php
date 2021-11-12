@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
         ->name('dashboard');
 
     // Users
-    Route::resource('users', UsersController::class);
-    Route::put('users/{user}/restore', [UsersController::class, 'restore'])
+    Route::resource('users', UserController::class);
+    Route::put('users/{user}/restore', [UserController::class, 'restore'])
         ->name('users.restore');
 
     // Roles

@@ -10,4 +10,11 @@ class EventInformation extends Model
 {
     use HasFactory,
         SoftDeletes;
+
+    protected $guarded = [];
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }

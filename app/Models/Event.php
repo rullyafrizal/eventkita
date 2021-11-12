@@ -10,4 +10,16 @@ class Event extends Model
 {
     use HasFactory,
         SoftDeletes;
+
+    protected $guarded = [];
+
+    public function eventPictures()
+    {
+        return $this->hasMany(EventPicture::class);
+    }
+
+    public function eventInformations()
+    {
+        return $this->hasMany(EventInformation::class);
+    }
 }

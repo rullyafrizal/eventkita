@@ -14,5 +14,13 @@ return [
         'show-role',
         'edit-role',
         'delete-role'
-    ]
+    ],
+    'user_permissions' => [
+        'view-users',
+        'show-user',
+        'edit-user',
+        'create-user',
+        'delete-user',
+        'restore-user',
+    ],
 ];
