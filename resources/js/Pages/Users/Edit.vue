@@ -24,7 +24,7 @@
           <text-input v-if="form.password" v-model="form.password_confirmation" :error="form.errors.password_confirmation" class="pr-6 pb-8 w-full lg:w-1/2" type="password" autocomplete="new-password" label="Password Confirmation" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-          <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete User</button>
+          <button v-if="!user.deleted_at && can('delete-user')" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete User</button>
           <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update User</loading-button>
         </div>
       </form>

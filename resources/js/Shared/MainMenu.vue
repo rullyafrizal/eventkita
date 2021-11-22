@@ -21,6 +21,13 @@
         </div>
       </inertia-link>
     </div>
+    <div v-if="can('view-articles')" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('articles.index')">
+        <div :class="isUrl('articles') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
+          <strong>ARTICLES</strong>
+        </div>
+      </inertia-link>
+    </div>
   </div>
 </template>
 

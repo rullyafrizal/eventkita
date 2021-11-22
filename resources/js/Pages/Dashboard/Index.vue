@@ -26,7 +26,7 @@
         <div v-if="can('view-admin-dashboard')" class="p-3 rounded-lg bg-white h-full shadow-lg w-full p-4">
           <div class="flex flex-wrap items-center">
             <icon name="news" class="mr-2 w-10 h-10 fill-indigo-600" />
-            <h4 class="mt-2 text-xl font-semibold">Total News : {{ newsCount }}</h4>
+            <h4 class="mt-2 text-xl font-semibold">Total Articles : {{ articlesCount }}</h4>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default {
   props: {
     usersCount: [Number],
     eventsCount: [Number],
-    newsCount: [Number],
+    articlesCount: [Number],
     userEventsCount: [Number],
   },
 }

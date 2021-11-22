@@ -30,6 +30,9 @@ class ListPermission
             'eventTypePermissions' => Permission::query()
                 ->whereIn('name', config('permission-list.event_type_permissions'))
                 ->get('name'),
+            'articlePermissions' => Permission::query()
+                ->whereIn('name', config('permission-list.article_permissions'))
+                ->get('name')
         ];
     }
 }

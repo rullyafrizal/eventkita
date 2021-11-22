@@ -34,4 +34,12 @@ return [
         'delete-event-type',
         'restore-event-type',
     ],
+    'article_permissions' => [
+        'view-articles',
+        'show-article',
+        'edit-article',
+        'create-article',
+        'delete-article',
+        'restore-article',
+    ],
 ];

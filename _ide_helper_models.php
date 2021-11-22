@@ -12,6 +12,37 @@
 
 namespace App\Models{
 /**
+ * App\Models\Article
+ *
+ * @property int $id
+ * @property string $title
+ * @property string|null $thumbnail
+ * @property string|null $body
+ * @property int $is_published
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Article filter(array $filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Article onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsPublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Article withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Article withoutTrashed()
+ */
+	class Article extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Event
  *
  * @property int $id
@@ -31,6 +62,7 @@ namespace App\Models{
  * @property-read int|null $event_informations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\EventPicture[] $eventPictures
  * @property-read int|null $event_pictures_count
+ * @property-read \App\Models\EventType $eventType
  * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
  * @method static \Illuminate\Database\Query\Builder|Event onlyTrashed()
@@ -79,8 +111,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Event[] $event
- * @property-read int|null $event_count
+ * @property-read \App\Models\Event $event
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventPicture newQuery()
  * @method static \Illuminate\Database\Query\Builder|EventPicture onlyTrashed()
@@ -122,36 +153,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|EventType withoutTrashed()
  */
 	class EventType extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\News
- *
- * @property int $id
- * @property string $title
- * @property string|null $thumbnail
- * @property string|null $content
- * @property int $is_published
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
- * @method static \Illuminate\Database\Query\Builder|News onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|News query()
- * @method static \Illuminate\Database\Eloquent\Builder|News whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublished($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereThumbnail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|News withTrashed()
- * @method static \Illuminate\Database\Query\Builder|News withoutTrashed()
- */
-	class News extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -47,7 +47,7 @@ export default {
   name: 'Create',
 
   metaInfo: {
-    title: 'Create Department',
+    title: 'Create Event Type',
   },
 
   layout: Layout,
@@ -56,7 +56,7 @@ export default {
     errors: [Object, Array],
   },
 
-  remember: 'formCreateDepartment',
+  remember: 'formCreateEventType',
 
   data() {
     return {

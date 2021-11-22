@@ -13,6 +13,11 @@ class Event extends Model
 
     protected $guarded = [];
 
+    public function eventType()
+    {
+        return $this->belongsTo(EventType::class);
+    }
+
     public function eventPictures()
     {
         return $this->hasMany(EventPicture::class);

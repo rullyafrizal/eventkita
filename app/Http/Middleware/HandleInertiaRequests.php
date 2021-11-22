@@ -56,6 +56,7 @@ class HandleInertiaRequests extends Middleware
                     'info' => $request->session()->get('info')
                 ];
             },
+            'csrf_token' => csrf_token(),
         ]);
     }
 

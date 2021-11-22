@@ -21,5 +21,11 @@ class EventTypeSeeder extends Seeder
                 'name' => $eventType
             ]);
         }
+
+        for ($i = 1; $i <= 1000; $i++) {
+            EventType::query()->updateOrCreate([
+                'name' => "event type $i"
+            ]);
+        }
     }
 }
