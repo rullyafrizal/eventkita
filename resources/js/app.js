@@ -22,7 +22,9 @@ Vue.use(VueFormulate, {
   ],
 })
 
-InertiaProgress.init()
+InertiaProgress.init({
+  delay: 0,
+})
 
 createInertiaApp({
   resolve: name => require(`./Pages/${name}`),

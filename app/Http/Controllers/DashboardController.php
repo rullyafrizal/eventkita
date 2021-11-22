@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Event;
-use App\Models\News;
 use App\Models\User;
 use Inertia\Inertia;
 
@@ -22,7 +22,7 @@ class DashboardController extends Controller
                 ->count(),
             'eventsCount' => Event::query()
                 ->count(),
-            'newsCount' => News::query()
+            'articlesCount' => Article::query()
                 ->count(),
             'userEventsCount' => auth()->user()
                 ->events()
