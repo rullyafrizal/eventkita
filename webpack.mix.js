@@ -2,6 +2,8 @@ const path = require('path')
 const mix = require('laravel-mix')
 const cssImport = require('postcss-import')
 const cssNesting = require('postcss-nesting')
+const purgecss = require('@fullhuman/postcss-purgecss')
+const tailwindcss = require('tailwindcss')
 
 /*
  |--------------------------------------------------------------------------
@@ -22,7 +24,24 @@ mix
     // prettier-ignore
     cssImport(),
     cssNesting(),
+    tailwindcss('tailwind.config.js'),
     require('tailwindcss'),
+    ...mix.inProduction() ? [
+      purgecss({
+        content: ['./resources/views/**/*.blade.php', './resources/js/**/*.vue'],
+        defaultExtractor: content => content.match(/[\w-/:.]+(?<!:)/g) || [],
+        whitelistPatternsChildren: [/nprogress/, /formulate/],
+      }),
+    ] : [],
   ])
+  .webpackConfig({
+    output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+    resolve: {
+      alias: {
+        vue$: 'vue/dist/vue.runtime.esm.js',
+        '@': path.resolve('resources/js'),
+      },
+    },
+  })
   .version()
   .sourceMaps()

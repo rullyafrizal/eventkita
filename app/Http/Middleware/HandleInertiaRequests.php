@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Spatie\Permission\Models\Permission;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -41,14 +42,10 @@ class HandleInertiaRequests extends Middleware
                 return [
                     'user' => $request->user() ? [
                         'id' => $request->user()->id,
-                        'first_name' => $request->user()->first_name,
-                        'last_name' => $request->user()->last_name,
+                        'name' => $request->user()->name,
                         'email' => $request->user()->email,
-                        'owner' => $request->user()->owner,
-                        'account' => [
-                            'id' => $request->user()->account->id,
-                            'name' => $request->user()->account->name,
-                        ],
+                        'phone' => $request->user()->phone,
+                        'can' => $this->getPermissions(),
                     ] : null,
                 ];
             },
@@ -56,8 +53,23 @@ class HandleInertiaRequests extends Middleware
                 return [
                     'success' => $request->session()->get('success'),
                     'error' => $request->session()->get('error'),
+                    'info' => $request->session()->get('info')
                 ];
             },
+            'csrf_token' => csrf_token(),
         ]);
+    }
+
+    /**
+     * Define all permission by authentication
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|Permission[]
+     */
+    // TODO: pindah fungsi ini ke repository atau action
+    private function getPermissions()
+    {
+        return Permission::all()->mapWithKeys(function ($permission) {
+            return [$permission->name => auth()->user()->can($permission->name)];
+        });
     }
 }

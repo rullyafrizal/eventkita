@@ -1,39 +1,38 @@
 <template>
   <div>
-    <div class="mb-4">
+    <div v-if="can('view-dashboard')" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('dashboard')">
-        <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Dashboard</div>
+        <div :class="isUrl('') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
+          <strong>DASHBOARD</strong>
+        </div>
       </inertia-link>
     </div>
-    <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('organizations')">
-        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('organizations') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('organizations') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Organizations</div>
+    <div v-if="can('view-roles')" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('roles.index')">
+        <div :class="isUrl('roles') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
+          <strong>ROLES</strong>
+        </div>
       </inertia-link>
     </div>
-    <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('contacts')">
-        <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('contacts') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('contacts') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Contacts</div>
+    <div v-if="can('view-event-types')" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('event-types.index')">
+        <div :class="isUrl('event-types') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
+          <strong>EVENT TYPES</strong>
+        </div>
       </inertia-link>
     </div>
-    <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('reports')">
-        <icon name="printer" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('reports') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Reports</div>
+    <div v-if="can('view-articles')" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('articles.index')">
+        <div :class="isUrl('articles') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
+          <strong>ARTICLES</strong>
+        </div>
       </inertia-link>
     </div>
   </div>
 </template>
 
 <script>
-import Icon from '@/Shared/Icon'
-
 export default {
-  components: {
-    Icon,
-  },
   methods: {
     isUrl(...urls) {
       let currentUrl = this.$page.url.substr(1)

@@ -18,6 +18,7 @@ class CreateEventPicturesTable extends Migration
             $table->string('path', 255);
             $table->foreignId('event_id')->constrained('events');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('event_type_id')->constrained('event_types');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
