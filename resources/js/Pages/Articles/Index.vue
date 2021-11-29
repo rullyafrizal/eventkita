@@ -46,7 +46,6 @@
       <table class="w-full whitespace-no-wrap">
         <tr class="font-bold text-left">
           <th class="px-6 pt-6 pb-4">Title</th>
-          <th class="px-6 pt-6 pb-4">Thumbnail</th>
           <th class="px-6 pt-6 pb-4">Status</th>
           <th class="px-6 pt-6 pb-4">Last Update</th>
           <th class="px-6 pt-6 pb-4">Action</th>
@@ -60,17 +59,6 @@
           <td class="border-t">
             <span class="flex items-center px-6 py-4">
               {{ article.title }}
-            </span>
-          </td>
-
-          <td class="border-t">
-            <span class="flex items-center px-6 py-4">
-              <img
-                v-if="article.thumbnail"
-                class="block w-5 h-5 mr-2 -my-2 rounded-full"
-                :src="article.thumbnail"
-                alt="Thumbnail"
-              />
             </span>
           </td>
 
@@ -97,7 +85,7 @@
             <button
               v-if="article.is_published"
               :disabled="loadingAction"
-              class="btn-red-small flex items-center mr-2"
+              class="btn-red-small flex items-center mr-2 ml-3"
               @click="publish(article)"
             >
               <span
@@ -112,7 +100,7 @@
             <button
               v-else
               :disabled="loadingAction"
-              class="btn-indigo-small flex items-center mr-2"
+              class="btn-indigo-small flex items-center mr-2 ml-3"
               type="button" @click="publish(article)"
             >
               <span
