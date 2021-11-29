@@ -138,7 +138,7 @@
           </td>
         </tr>
         <tr v-if="articles.data.length === 0">
-          <td class="px-6 py-4 border-t" colspan="3">No data found.</td>
+          <td class="px-6 py-4 border-t" colspan="5">No data found.</td>
         </tr>
       </table>
     </div>

@@ -9,8 +9,18 @@
         </button>
       </div>
       <div v-else class="flex items-center justify-between p-2">
-        <div class="flex-1 pr-1">
-          {{ value.name }} <span class="text-gray-500 text-xs">({{ filesize(value.size) }})</span>
+        <div v-if="link" class="flex-1 pr-1">
+          <a
+            :href="link"
+            target="_blank"
+            class="text-sm font-bold text-blue-700 underline"
+            rel="noopener"
+          >{{ value.name }}</a>
+          <span v-if="size === 'show'" class="text-gray-500 text-xs">({{ filesize(value.size) }})</span>
+        </div>
+        <div v-else class="flex-1 pr-1">
+          {{ value.name }}
+          <span v-if="size === 'show'" class="text-gray-500 text-xs">({{ filesize(value.size) }})</span>
         </div>
         <button type="button" class="px-4 py-1 bg-gray-500 hover:bg-gray-700 rounded-sm text-xs font-medium text-white" @click="remove">
           Remove
@@ -31,6 +41,9 @@ export default {
       type: Array,
       default: () => [],
     },
+    size: String,
+    link: String,
+    disabled: Boolean,
   },
   watch: {
     value(value) {

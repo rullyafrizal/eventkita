@@ -65,7 +65,9 @@ class ArticleController extends Controller
         $this->authorize('show-article', Article::class);
 
         return Inertia::render('Articles/Show', [
-            'article' => new ArticleResource($article)
+            'article' => new ArticleResource(
+                $article
+            )
         ]);
     }
 
@@ -128,7 +130,12 @@ class ArticleController extends Controller
     {
         $this->authorize('delete-article', Article::class);
 
-        $article->delete();
+        DB::transaction(function () use ($article) {
+            Storage::disk('local')->delete($article->thumbnail);
+
+            $article->forceDelete();
+        });
+
 
         return redirect()
             ->route('articles.index')
