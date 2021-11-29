@@ -204,10 +204,6 @@ export default {
     }
   },
 
-  created() {
-    console.log(this.event.data.pictures)
-  },
-
   methods: {
     restore() {
       if (confirm('Are you sure you want to restore this event?')) {
