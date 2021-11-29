@@ -4,9 +4,6 @@
 - MySQL 8.0
 - NodeJS 14.*
 
-## Database Design
-![IMAGE OF ERD](/public/erd.png)
-
 ## Installation
 
 1. Clone the repository

@@ -23,7 +23,6 @@ class ArticleResource extends JsonResource
             'is_published' => $this->is_published,
             'created_at' => $this->created_at->format(DateFormat::WITH_TIME),
             'updated_at' => $this->updated_at->format(DateFormat::WITH_TIME),
-            'last_update' => $this->updated_at->format(DateFormat::DAY_DATE_TIME),
             'deleted_at' => $this->deleted_at ? $this->deleted_at->format(DateFormat::WITH_TIME) : null,
         ];
     }

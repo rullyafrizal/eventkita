@@ -33,7 +33,7 @@
             v-model="formCreate.thumbnail"
             label="Foto Thumbnail"
             :errors="errors.thumbnail"
-            size="show"
+            hide-size
             class="w-1/2 p-2"
           />
           <div>

@@ -16,7 +16,10 @@ class User extends Authenticatable
         SoftDeletes,
         HasRoles;
 
-    protected $casts = [];
+    protected $casts = [
+        'owner' => 'boolean',
+        'email_verified_at' => 'datetime',
+    ];
 
     public function resolveRouteBinding($value, $field = null)
     {

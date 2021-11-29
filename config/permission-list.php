@@ -42,21 +42,4 @@ return [
         'delete-article',
         'restore-article',
     ],
-    'event_permissions' => [
-        'view-events',
-        'show-event',
-        'edit-event',
-        'create-event',
-        'update-event',
-        'delete-event',
-        'restore-event',
-    ],
-    'event_picture_permissions' => [
-        'upload-event-picture',
-        'create-event-picture',
-        'view-event-pictures',
-        'edit-event-picture',
-        'delete-event-picture',
-        'show-event-picture',
-    ]
 ];

@@ -14,9 +14,9 @@ class CreateEventPicturesTable extends Migration
     public function up()
     {
         Schema::create('event_pictures', function (Blueprint $table) {
-            $table->Uuid('id')->primary();
+            $table->id();
             $table->string('path', 255);
-            $table->foreignUuid('event_id')->constrained('events');
+            $table->foreignId('event_id')->constrained('events');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,10 +29,10 @@ class CreateEventPicturesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('event_pictures');
         Schema::table('event_pictures', function (Blueprint $table) {
             $table->dropForeign(['event_id']);
             $table->dropColumn(['event_id']);
         });
-        Schema::dropIfExists('event_pictures');
     }
 }

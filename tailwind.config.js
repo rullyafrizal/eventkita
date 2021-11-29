@@ -48,7 +48,5 @@ module.exports = {
       fill: ['focus', 'group-hover'],
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [],
 }
