@@ -7,7 +7,7 @@ return [
     'dashboard_permissions' => [
         'view-dashboard',
         'view-users-count',
-        'view-news-count',
+        'view-articles-count',
         'view-events-count',
         'view-my-events-count'
     ],
