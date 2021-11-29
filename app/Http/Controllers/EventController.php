@@ -25,7 +25,7 @@ class EventController extends Controller
     {
         $this->authorize('view-events', Event::class);
 
-        $filters = $request->only(['search', 'trashed', 'status']);
+        $filters = $request->only(['search', 'status']);
 
         return Inertia::render('Events/Index', [
             'filters' => $filters,
@@ -40,7 +40,7 @@ class EventController extends Controller
 
     public function create()
     {
-        $this->authorize('create-events', Event::class);
+        $this->authorize('create-event', Event::class);
 
         return Inertia::render('Events/Create', [
             'eventTypes' => EventType::pluck('name', 'id')

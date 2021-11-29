@@ -41,25 +41,42 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-between mb-4">
+      <div v-if="event.data.pictures.data.length" class="flex justify-center overflow-x-auto bg-white rounded shadow mx-4 mb-5">
         <div class="flex">
-          <div class="mx-2">
+          <div class="m-5">
             <img
-              class="object-cover w-full"
+              class="object-cover w-full rounded-md"
               :src="activeImage.path"
               alt="profile image"
             />
           </div>
         </div>
       </div>
-      <div class="flex flex-row flex-wrap -mx-2 mb-8 px-4">
+      <div v-else class="overflow-x-auto bg-white rounded shadow mx-4 mb-5">
+        <div class="flex justify-center">
+          <div class="m-5">
+            <h1 class="text-3xl font-bold">
+              No Pictures Found
+            </h1>
+            <h3 class="text-md mt-2 font-light">
+              <inertia-link
+                class="text-indigo-400 hover:text-indigo-600"
+                :href="route('event-pictures.create')"
+              >
+                + Add Pictures
+              </inertia-link>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div v-if="event.data.pictures.data.length" class="flex flex-row flex-wrap -mx-2 mb-8 px-4">
         <div v-for="picture in event.data.pictures.data"
              :key="picture.id"
              class="w-full cursor-pointer sm:w-1/5 h-32 md:h-48 mb-4 sm:mb-0 px-2"
              @click="activateImage(picture)"
         >
           <a
-            class="block w-full h-full bg-grey-dark bg-no-repeat bg-center bg-cover"
+            class="block w-full h-full bg-grey-dark bg-no-repeat bg-center bg-cover rounded-md"
             :class="{'outline-none ring-4 ring-indigo-700 border-transparent': picture.id === activeImage.id}"
             :style="{ backgroundImage: `url(${picture.path})` }"
           />
@@ -130,7 +147,7 @@
       </div>
 
       <div class="overflow-x-auto bg-white hover:bg-gray-50 rounded shadow mx-4 mb-5">
-        <div v-if="event.data.informations" class="grid grid-cols-2 gap-4 mx-5 my-5">
+        <div v-if="event.data.informations.data.length" class="grid grid-cols-2 gap-4 mx-5 my-5">
           <div v-for="information in event.data.informations.data" :key="information.id" class="font-medium">
             &bull; &nbsp;{{ information.information }}
           </div>
@@ -185,10 +202,6 @@ export default {
     return {
       activeImage: this.event.data.pictures.data[0],
     }
-  },
-
-  mounted() {
-    console.log(this.event)
   },
 
   methods: {

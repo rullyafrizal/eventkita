@@ -110,6 +110,8 @@ class EventService
                     Storage::disk('local')->delete($eventPicture->path);
                 });
 
+            $event->eventInformations()->forceDelete();
+
             $event->eventPictures()->forceDelete();
 
             $event->forceDelete();
