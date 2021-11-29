@@ -36,7 +36,7 @@
       <div class="flex justify-center mb-4">
         <div class="flex">
           <div class="mr-4">
-            <img class="h-full w-full" :src="article.data.thumbnail" alt="profile image" />
+            <img class="h-full w-full rounded-md" :src="article.data.thumbnail" alt="profile image" />
           </div>
         </div>
       </div>
@@ -58,9 +58,6 @@
               NOT PUBLISHED
             </span>
           </div>
-<!--          <div class="mt-3">-->
-<!--            -->
-<!--          </div>-->
         </div>
         <div class="prose lg:prose-m" v-html="article.data.body" />
       </div>

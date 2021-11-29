@@ -19,18 +19,6 @@
             <option value="CLOSED">Closed</option>
           </select>
         </label>
-
-        <label class="block mt-4 text-gray-700">Trashed:</label>
-        <label>
-          <select
-            v-model="formFilter.trashed"
-            class="w-full mt-1 form-select"
-          >
-            <option :value="null" />
-            <option value="with">With Trashed</option>
-            <option value="only">Only Trashed</option>
-          </select>
-        </label>
       </search-filter>
       <inertia-link
         v-if="can('create-event')"

@@ -33,9 +33,10 @@ class EventPictureController extends Controller
             'filters' => $filters,
             'eventPictures' => new EventPictureCollection(
                 EventPicture::query()
-                    ->with(['event' => function ($query) {
+                    ->with('event')
+                    ->whereHas('event', function ($query) {
                         return $query->where('user_id', auth()->id());
-                    }])
+                    })
                     ->filter($filters)
                     ->paginate()
             )
@@ -47,7 +48,8 @@ class EventPictureController extends Controller
         $this->authorize('create-event-picture', EventPicture::class);
 
         return Inertia::render('EventPictures/Create', [
-            'events' => Event::query()
+            'events' => auth()->user()
+                ->events()
                 ->withCount('eventPictures')
                 ->having('event_pictures_count', '<', 5)
                 ->pluck('name', 'id'),

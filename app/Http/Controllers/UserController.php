@@ -81,10 +81,14 @@ class UserController extends Controller
     {
         $this->authorize('edit-user', User::class);
 
-        return Inertia::render('Users/Edit', [
-            'user' => new UserResource($user->load(['roles'])),
-            'roles' => Role::all('name')->pluck('name'),
-        ]);
+        if(auth()->id() == $user->id || auth()->user()->can('full-access')) {
+            return Inertia::render('Users/Edit', [
+                'user' => new UserResource($user->load(['roles'])),
+                'roles' => Role::all('name')->pluck('name'),
+            ]);
+        } else {
+            abort(403);
+        }
     }
 
     /**
