@@ -18,7 +18,7 @@ namespace App\Models{
  * @property string $title
  * @property string|null $thumbnail
  * @property string|null $body
- * @property int $is_published
+ * @property bool $is_published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at

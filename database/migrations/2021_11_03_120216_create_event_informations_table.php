@@ -16,7 +16,7 @@ class CreateEventInformationsTable extends Migration
         Schema::create('event_informations', function (Blueprint $table) {
             $table->id();
             $table->string('information', 255)->nullable(false);
-            $table->foreignId('event_id')->constrained('events');
+            $table->foreignUuid('event_id')->constrained('events');
             $table->timestamps();
             $table->softDeletes();
         });

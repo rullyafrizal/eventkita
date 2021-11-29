@@ -16,3 +16,26 @@ if (!function_exists('photo_url'))
         return 'https://ui-avatars.com/api/?background=random&name=' . $name;
     }
 }
+
+if (!function_exists('file_responses'))
+{
+    /**
+     * Get default response for file uploaded in [vue-formulate]
+     *
+     * @param string|null $path
+     * @return array
+     */
+    function file_responses(?string $path): array
+    {
+        if (!$path) {
+            return [];
+        }
+
+        $responses = [
+            'path' => $path,
+            'url' => url()->route('file', $path),
+        ];
+
+        return [$responses];
+    }
+}

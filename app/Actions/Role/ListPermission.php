@@ -32,7 +32,13 @@ class ListPermission
                 ->get('name'),
             'articlePermissions' => Permission::query()
                 ->whereIn('name', config('permission-list.article_permissions'))
-                ->get('name')
+                ->get('name'),
+            'eventPermissions' => Permission::query()
+                ->whereIn('name', config('permission-list.event_permissions'))
+                ->get('name'),
+            'eventPicturePermissions' => Permission::query()
+                ->whereIn('name', config('permission-list.event_picture_permissions'))
+                ->get('name'),
         ];
     }
 }

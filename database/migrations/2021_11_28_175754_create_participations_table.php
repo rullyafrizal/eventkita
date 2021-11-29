@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserEventTable extends Migration
+class CreateParticipationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateUserEventTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_event', function (Blueprint $table) {
-            $table->foreignId('event_id')->constrained('events');
+        Schema::create('participations', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('event_id')->constrained('events');
             $table->foreignId('user_id')->constrained('users');
             $table->enum('status', ['PRESENT', 'ABSENT']);
             $table->timestamps();
@@ -28,10 +29,13 @@ class CreateUserEventTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_event');
-        Schema::table('user_event', function (Blueprint $table) {
-            $table->dropForeign(['event_id', 'user_id']);
-            $table->dropColumn(['event_id', 'user_id']);
+        Schema::table('participations', function (Blueprint $table) {
+            $table->dropForeign(['event_id']);
+            $table->dropColumn(['event_id']);
+
+            $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id']);
         });
+        Schema::dropIfExists('participations');
     }
 }
