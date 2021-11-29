@@ -7,7 +7,6 @@
         </div>
       </inertia-link>
     </div>
-
     <div v-if="can('view-roles')" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('roles.index')">
         <div :class="isUrl('roles') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
@@ -15,7 +14,6 @@
         </div>
       </inertia-link>
     </div>
-
     <div v-if="can('view-event-types')" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('event-types.index')">
         <div :class="isUrl('event-types') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
@@ -23,27 +21,10 @@
         </div>
       </inertia-link>
     </div>
-
     <div v-if="can('view-articles')" class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('articles.index')">
         <div :class="isUrl('articles') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
           <strong>ARTICLES</strong>
-        </div>
-      </inertia-link>
-    </div>
-
-    <div v-if="can('view-events')" class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('events.index')">
-        <div :class="isUrl('events') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
-          <strong>EVENTS</strong>
-        </div>
-      </inertia-link>
-    </div>
-
-    <div v-if="can('view-event-pictures')" class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('event-pictures.index')">
-        <div :class="isUrl('event-pictures') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
-          <strong>EVENT PICTURES</strong>
         </div>
       </inertia-link>
     </div>
@@ -54,12 +35,10 @@
 export default {
   methods: {
     isUrl(...urls) {
-      let currentUrl = this.$page.url.substr(1).replace('cms/', '')
-
+      let currentUrl = this.$page.url.substr(1)
       if (urls[0] === '') {
         return currentUrl === ''
       }
-
       return urls.filter(url => currentUrl.startsWith(url)).length
     },
   },

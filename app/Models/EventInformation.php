@@ -13,8 +13,6 @@ class EventInformation extends Model
 
     protected $guarded = [];
 
-    protected $table = 'event_informations';
-
     public function event()
     {
         return $this->belongsTo(Event::class);
