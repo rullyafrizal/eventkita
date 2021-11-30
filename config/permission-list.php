@@ -58,5 +58,9 @@ return [
         'edit-event-picture',
         'delete-event-picture',
         'show-event-picture',
+    ],
+    'participation_permissions' => [
+        'view-participations',
+        'show-participation',
     ]
 ];

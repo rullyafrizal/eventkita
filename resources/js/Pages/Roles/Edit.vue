@@ -155,6 +155,22 @@
               </label>
             </div>
           </div>
+
+          <div class="font-bold mt-2">Participation Permissions</div>
+          <div class="grid grid-cols-3 gap-6 my-3">
+            <div v-for="permission in participationPermissions" :key="permission.name" class="col-span-1">
+              <label :for="permission.name">
+                <input
+                  :id="permission.name"
+                  v-model.lazy="formEdit.permissions"
+                  type="checkbox"
+                  :value="permission.name"
+                  @change="updateCheckAll"
+                />
+                {{ permission.name }}
+              </label>
+            </div>
+          </div>
         </div>
         <div class="flex justify-between items-center px-8 py-4 bg-gray-100 border-t border-gray-200 w-full justify-end">
           <inertia-link
@@ -192,6 +208,7 @@ export default {
     articlePermissions: [Array, Object],
     eventPermissions: [Array, Object],
     eventPicturePermissions: [Array, Object],
+    participationPermissions: [Array, Object],
     role: [Object, Array],
   },
 

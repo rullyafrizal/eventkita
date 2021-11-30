@@ -55,6 +55,14 @@
         </div>
       </inertia-link>
     </div>
+
+    <div v-if="can('view-participations')" class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('participations.index')">
+        <div :class="isUrl('participations') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">
+          <strong>Participations</strong>
+        </div>
+      </inertia-link>
+    </div>
   </div>
 </template>
 

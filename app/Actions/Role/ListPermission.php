@@ -39,6 +39,9 @@ class ListPermission
             'eventPicturePermissions' => Permission::query()
                 ->whereIn('name', config('permission-list.event_picture_permissions'))
                 ->get('name'),
+            'participationPermissions' => Permission::query()
+                ->whereIn('name', config('permission-list.participation_permissions'))
+                ->get('name'),
         ];
     }
 }
