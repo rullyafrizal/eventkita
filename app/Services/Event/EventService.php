@@ -87,15 +87,14 @@ class EventService
         if ($request->event_informations) {
            $event_informations = explode(',', $request->event_informations);
 
+            $event->eventInformations()->forceDelete();
+
            foreach ($event_informations as $event_information) {
                EventInformation::query()
-                   ->updateOrCreate(
-                       ['information' => trim($event_information)],
-                       [
-                           'information' => trim($event_information),
-                           'event_id' => $event->id
-                       ]
-                   );
+                   ->create([
+                       'information' => trim($event_information),
+                       'event_id' => $event->id
+                   ]);
            }
         } else {
             $event->eventInformations()->forceDelete();
