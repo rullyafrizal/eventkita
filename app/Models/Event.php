@@ -59,4 +59,9 @@ class Event extends Model
     {
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
+
+    public function participations()
+    {
+        return $this->hasMany(Participation::class);
+    }
 }

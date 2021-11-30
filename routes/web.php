@@ -8,6 +8,7 @@ use App\Http\Controllers\EventPictureController;
 use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -86,6 +87,12 @@ Route::group(['prefix' => 'cms'], function() {
         Route::resource('event-pictures', EventPictureController::class);
         Route::post('event-pictures/action/upload', [EventPictureController::class, 'upload'])
             ->name('event-pictures.upload');
+
+        // Participations
+        Route::resource('participations', ParticipationController::class)
+            ->only(['index']);
+        Route::get('participations/{event}', [ParticipationController::class, 'show'])
+            ->name('participations.show');
     });
 
 });
