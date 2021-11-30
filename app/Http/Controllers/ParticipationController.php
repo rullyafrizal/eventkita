@@ -20,7 +20,8 @@ class ParticipationController extends Controller
         return Inertia::render('Participations/Index', [
             'filters' => $filters,
             'events' => new EventCollection(
-                Event::query()
+                auth()->user()
+                    ->events()
                     ->withCount('participations as participant_count')
                     ->filter($filters)
                     ->paginate()
