@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rules\Password;
 
 class StoreUserRequest extends FormRequest
@@ -14,6 +15,10 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
+        if (Request::wantsJson()) {
+            return true;
+        }
+
         return auth()->user()->can('create-user');
     }
 
@@ -38,7 +43,7 @@ class StoreUserRequest extends FormRequest
                     ->uncompromised()
             ],
             'phone' => ['required', 'unique:users'],
-            'role' => ['required']
+            'role' => ['sometimes', 'required']
         ];
     }
 }

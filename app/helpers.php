@@ -1,5 +1,8 @@
 <?php
 
+use App\Enums\HttpStatus;
+use Illuminate\Http\JsonResponse;
+
 if (!function_exists('photo_url'))
 {
     /**
@@ -37,5 +40,25 @@ if (!function_exists('file_responses'))
         ];
 
         return [$responses];
+    }
+}
+
+if(!function_exists('api_response')) {
+    function api_response(int $status = HttpStatus::OK, string $message = '', $body = []): JsonResponse
+    {
+        if ($body) {
+            return response()
+                ->json([
+                    'status' => $status,
+                    'message' => $message,
+                    'body' => $body
+                ], $status);
+        }
+
+        return response()
+            ->json([
+                'status' => $status,
+                'message' => $message,
+            ], $status);
     }
 }

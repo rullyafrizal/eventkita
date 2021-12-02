@@ -33,4 +33,9 @@ class Article extends Model
     {
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
+
+    public function scopeWherePublished(Builder $query)
+    {
+        return $query->where('is_published', true);
+    }
 }
