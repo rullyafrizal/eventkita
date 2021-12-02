@@ -34,7 +34,7 @@ class EventResource extends JsonResource
             'pictures' => new EventPictureCollection($this->whenLoaded('eventPictures')),
             'informations' => new EventInformationCollection($this->whenLoaded('eventInformations')),
             'participant_count' => $this->whenLoaded('participations', function() {
-                return $this->participant_count;
+                return $this->participations_count;
             }, 0),
             'user' => new UserResource($this->whenLoaded('user')),
             'created_at' => $this->created_at->format(DateFormat::WITH_TIME),

@@ -15,7 +15,7 @@ class EventCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => EventResource::collection($this->collection)
+            'data' => EventResource::collection($this->collection),
         ];
     }
 }

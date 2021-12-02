@@ -37,6 +37,16 @@ Route::group(['prefix' => 'cms'], function() {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
+    // Images
+    Route::get('img/{path}', [ImageController::class, 'show'])
+        ->where('path', '.*')
+        ->name('image');
+
+    // Files
+    Route::get('file/{path}', [FileController::class, 'show'])
+        ->where('path', '.*')
+        ->name('file');
+
     Route::group(['middleware' => 'auth'], function() {
         // Dashboard
         Route::get('/', [DashboardController::class, 'index'])
@@ -63,16 +73,6 @@ Route::group(['prefix' => 'cms'], function() {
             ->name('articles.publish');
         Route::post('articles/action/upload', [ArticleController::class, 'upload'])
             ->name('articles.upload');
-
-        // Images
-        Route::get('img/{path}', [ImageController::class, 'show'])
-            ->where('path', '.*')
-            ->name('image');
-
-        // Files
-        Route::get('file/{path}', [FileController::class, 'show'])
-            ->where('path', '.*')
-            ->name('file');
 
         // Events
         Route::resource('events', EventController::class);

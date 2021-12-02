@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EventStatus;
 use App\Models\Traits\HasFilter;
 use App\Models\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Builder;
@@ -63,5 +64,10 @@ class Event extends Model
     public function participations()
     {
         return $this->hasMany(Participation::class);
+    }
+
+    public function scopeWhereOpen(Builder $query)
+    {
+        return $query->where('status', EventStatus::OPEN);
     }
 }
