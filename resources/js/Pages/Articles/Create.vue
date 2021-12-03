@@ -11,7 +11,7 @@
       Create Article
     </h1>
 
-    <div class="max-w-3xl overflow-hidden bg-white rounded shadow">
+    <div class="max-w-4xl overflow-hidden bg-white rounded shadow">
       <FormulateForm
         v-model="formCreate"
         :errors="errors"

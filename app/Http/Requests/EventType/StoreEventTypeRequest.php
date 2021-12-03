@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\EventType;
 
 use Illuminate\Foundation\Http\FormRequest;
+use function auth;
 
 class StoreEventTypeRequest extends FormRequest
 {
