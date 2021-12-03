@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\Auth\AuthenticationController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\ParticipationController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,10 +26,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthenticationController::class, 'login'])
         ->name('login.store');
 });
-// Check Profile
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
-   Route::get('auth/me', [AuthenticationController::class, 'me'])
+    // Check Profile
+    Route::get('auth/me', [AuthenticationController::class, 'me'])
        ->name('me');
+   // Update Profile
+    Route::put('users', [UserController::class, 'update'])
+        ->name('users.update');
+
 
    // Join event
     Route::post('events/{event}/action/join', [EventController::class, 'join'])
