@@ -17,9 +17,14 @@ class ParticipationController extends Controller
         $participations = new ParticipationCollection(
             auth()->user()
                 ->participations()
-                ->with(['event' => function ($query) {
-                    return $query->with(['eventPictures']);
-                }])
+                ->with(
+                    [
+                        'event' => function ($query) {
+                            return $query->with(['eventPictures', 'user', 'participations'])
+                                ->withCount(['participations']);
+                        }
+                    ]
+                )
                 ->get()
         );
 
