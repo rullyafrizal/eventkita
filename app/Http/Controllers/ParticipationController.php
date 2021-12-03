@@ -22,7 +22,8 @@ class ParticipationController extends Controller
             'events' => new EventCollection(
                 auth()->user()
                     ->events()
-                    ->withCount('participations as participant_count')
+                    ->with('participations')
+                    ->withCount('participations')
                     ->filter($filters)
                     ->paginate()
             )
