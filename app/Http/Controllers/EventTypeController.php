@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventType\StoreEventTypeRequest;
 use App\Http\Requests\EventType\UpdateEventTypeRequest;
-use App\Http\Requests\StoreEventTypeRequest;
 use App\Http\Resources\EventType\EventTypeCollection;
 use App\Http\Resources\EventType\EventTypeResource;
 use App\Models\EventType;

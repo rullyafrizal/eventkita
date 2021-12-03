@@ -56,11 +56,6 @@ class User extends Authenticatable
         return $this->hasMany(Event::class);
     }
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
     public function participations()
     {
         return $this->hasMany(Participation::class);

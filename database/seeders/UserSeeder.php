@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             ->create([
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
-                'password' => 'Admin123',
+                'password' => bcrypt('Admin123'),
                 'phone' => '081234567890'
             ]);
     }
