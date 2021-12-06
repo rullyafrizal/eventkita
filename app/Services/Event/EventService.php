@@ -109,6 +109,8 @@ class EventService
                     Storage::disk('local')->delete($eventPicture->path);
                 });
 
+            $event->participations()->forceDelete();
+
             $event->eventInformations()->forceDelete();
 
             $event->eventPictures()->forceDelete();
