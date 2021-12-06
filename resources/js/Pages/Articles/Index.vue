@@ -56,7 +56,7 @@
           :key="article.id"
           class="hover:bg-gray-100 focus-within:bg-gray-100"
         >
-          <td class="border-t">
+          <td class="border-t w-1/3">
             <span class="flex items-center px-6 py-4">
               {{ article.title }}
             </span>
