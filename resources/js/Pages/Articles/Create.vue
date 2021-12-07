@@ -44,7 +44,9 @@
           <FormulateInput
             type="submit"
             name="Create Article"
-          />
+            :disabled="loading"
+          >Create Article <div v-if="loading" style="border-top-color:transparent" class="ml-3 w-5 h-5 border-4 border-blue-400 border-solid rounded-full animate-spin"></div>
+          </FormulateInput>
         </div>
       </FormulateForm>
     </div>
@@ -83,6 +85,7 @@ export default {
         body: null,
         thumbnail: null,
       },
+      loading: false,
     }
   },
 
@@ -93,6 +96,7 @@ export default {
 
   methods: {
     async submit(data) {
+      this.loading = true
       let form = data
 
       if (this.formCreate.thumbnail) {
@@ -104,7 +108,11 @@ export default {
         delete form.thumbnail
       }
 
-      this.$inertia.post(this.route('articles.store'), form)
+      this.$inertia.post(this.route('articles.store'), form, {
+        onSuccess: () => {
+          this.loading = false
+        },
+      })
     },
   },
 }

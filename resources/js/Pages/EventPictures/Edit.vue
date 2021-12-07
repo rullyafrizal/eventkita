@@ -36,8 +36,10 @@
 
           <FormulateInput
             type="submit"
-            name="Update"
-          />
+            name="Update Event Picture"
+            :disabled="loading"
+          >Update Event Picture<div v-if="loading" style="border-top-color:transparent" class="ml-3 w-5 h-5 border-4 border-blue-400 border-solid rounded-full animate-spin"></div>
+          </FormulateInput>
         </div>
       </FormulateForm>
     </div>
@@ -78,6 +80,7 @@ export default {
           url: this.eventPicture.data.file[0]['url'],
         } : null,
         type: 'update',
+        loading: false,
       },
     }
   },
@@ -96,6 +99,7 @@ export default {
   },
   methods: {
     async submit(data) {
+      this.loading = true
       let form = {
         ...data,
       }
@@ -113,6 +117,7 @@ export default {
 
       this.$inertia.put(this.route('event-pictures.update', this.eventPicture.data.id), form)
         .then(() => {
+          this.loading = false
           if (!this.errors) {
             this.$formulate.reset('formEdit')
             this.$refs.fileUpload.remove()
