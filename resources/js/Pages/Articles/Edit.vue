@@ -53,7 +53,9 @@
           <FormulateInput
             type="submit"
             name="Update Article"
-          />
+            :disabled="loading"
+          >Update Article <div v-if="loading" style="border-top-color:transparent" class="ml-3 w-5 h-5 border-4 border-blue-400 border-solid rounded-full animate-spin"></div>
+          </FormulateInput>
         </div>
       </FormulateForm>
     </div>
@@ -93,6 +95,7 @@ export default {
         body: this.article.data.body,
         thumbnail: null,
       },
+      loading: false,
     }
   },
 
@@ -103,6 +106,7 @@ export default {
 
   methods: {
     async submit(data) {
+      this.loading = true
       let form = data
 
       if (this.formEdit.thumbnail) {
@@ -114,7 +118,9 @@ export default {
         delete form.thumbnail
       }
 
-      this.$inertia.put(this.route('articles.update', this.article.data.id), form)
+      this.$inertia.put(this.route('articles.update', this.article.data.id), form, {
+        onSuccess: () => { this.loading = false },
+      })
     },
 
     async destroy() {

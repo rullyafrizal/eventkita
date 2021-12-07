@@ -47,12 +47,12 @@
         </div>
 
         <div class="flex items-center justify-end w-full px-8 py-4 mt-8 bg-gray-100 border-t border-gray-200">
-          <div v-if="loading" class="mr-4 animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-black" />
           <FormulateInput
             type="submit"
-            name="Create Event Pictures"
+            name="Create Event Picture"
             :disabled="loading"
-          />
+          >Create Event Picture<div v-if="loading" style="border-top-color:transparent" class="ml-3 w-5 h-5 border-4 border-blue-400 border-solid rounded-full animate-spin"></div>
+          </FormulateInput>
         </div>
       </FormulateForm>
     </div>
