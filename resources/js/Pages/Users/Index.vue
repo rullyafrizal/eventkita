@@ -8,12 +8,6 @@
           <option :value="null" />
           <option v-for="role in roles" :key="role" :value="role">{{ role }}</option>
         </select>
-        <label class="mt-4 block text-gray-700">Trashed:</label>
-        <select v-model="form.trashed" class="mt-1 w-full form-select">
-          <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
-        </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('users.create')">
         <span>Create</span>

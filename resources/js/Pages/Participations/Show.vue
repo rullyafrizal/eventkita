@@ -123,10 +123,6 @@ export default {
     },
   },
 
-  created() {
-    console.log(this.participations)
-  },
-
   methods: {
     reset () {
       this.formFilter = mapValues(this.formFilter, () => null)

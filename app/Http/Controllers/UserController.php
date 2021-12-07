@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\User\DeleteUser;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\User\UserCollection;
@@ -26,7 +27,7 @@ class UserController extends Controller
     {
         $this->authorize('view-users', User::class);
 
-        $filters = $request->only(['search', 'trashed', 'role']);
+        $filters = $request->only(['search', 'role']);
 
         return Inertia::render('Users/Index', [
             'filters' => $filters,
@@ -121,9 +122,7 @@ class UserController extends Controller
     {
         $this->authorize('delete-user', $user);
 
-        DB::transaction(function () use ($user) {
-            $user->delete();
-        });
+        DeleteUser::run($user);
 
         return redirect()
             ->route('users.index')
