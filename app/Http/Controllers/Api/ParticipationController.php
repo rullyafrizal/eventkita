@@ -17,6 +17,7 @@ class ParticipationController extends Controller
         $participations = new ParticipationCollection(
             auth()->user()
                 ->participations()
+                ->orderByDesc('created_at')
                 ->with(
                     [
                         'event' => function ($query) {

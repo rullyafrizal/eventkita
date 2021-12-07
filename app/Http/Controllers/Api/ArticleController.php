@@ -17,6 +17,7 @@ class ArticleController extends Controller
 
         return new ArticleCollection(
             Article::query()
+                ->orderByDesc('created_at')
                 ->wherePublished()
                 ->paginate($paginate)
         );
