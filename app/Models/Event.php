@@ -33,6 +33,10 @@ class Event extends Model
                 ->orWhere('location', 'like', '%' . $search . '%');
         })->when($filters['status'] ?? null, function (Builder $query, $status) {
             return $query->where('status', $status);
+        })->when(count(array_filter($filters['type'])), function (Builder $query) use ($filters) {
+            return $query->whereHas('eventType', function ($query) use ($filters) {
+                return $query->whereIn('name', $filters['type']);
+            });
         });
     }
 
