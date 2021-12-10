@@ -32,11 +32,20 @@ class EventController extends Controller
 
      public function indexPagination(Request $request)
      {
-          $paginate = $request->paginate ? (float)$request->paginate : 8;
+          $paginate = $request->paginate ? (float)$request->paginate : 6;
+
+          $filters = $request->only(['type']);
+          $type = array_key_exists('type', $filters) ?
+              explode(',', $filters['type']) : [];
 
           return new EventCollection(
               Event::query()
-                  ->with(['eventPictures', 'participations'])
+                  ->with(['eventPictures', 'participations', 'eventType'])
+                  ->whereHas('eventType', function ($query) use ($type) {
+                      return $query->when(count($type), function ($query) use ($type) {
+                          return $query->whereIn('name', $type);
+                      });
+                  })
                   ->withCount('participations')
                   ->orderByDesc('created_at')
                   ->whereOpen()
