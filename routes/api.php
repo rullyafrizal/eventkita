@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\Auth\AuthenticationController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\EventTypeController;
 use App\Http\Controllers\Api\ParticipationController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -58,6 +59,10 @@ Route::group(['as' => 'api.'], function () {
 
     // Articles
     Route::apiResource('articles', ArticleController::class)->only(['index', 'show']);
+
+    // Event Types
+    Route::apiResource('event-types', EventTypeController::class)
+        ->only(['index']);
 });
 
 
