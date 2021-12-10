@@ -34,18 +34,14 @@ class EventController extends Controller
      {
           $paginate = $request->paginate ? (float)$request->paginate : 6;
 
-          $filters = $request->only(['type']);
-          $type = array_key_exists('type', $filters) ?
+          $filters = $request->only(['type', 'search']);
+          $filters['type'] = array_key_exists('type', $filters) ?
               explode(',', $filters['type']) : [];
 
           return new EventCollection(
               Event::query()
                   ->with(['eventPictures', 'participations', 'eventType'])
-                  ->whereHas('eventType', function ($query) use ($type) {
-                      return $query->when(count($type), function ($query) use ($type) {
-                          return $query->whereIn('name', $type);
-                      });
-                  })
+                  ->filter($filters)
                   ->withCount('participations')
                   ->orderByDesc('created_at')
                   ->whereOpen()
