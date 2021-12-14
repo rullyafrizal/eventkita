@@ -28,12 +28,17 @@ class Event extends Model
     {
         $query = $this->trashedFilter($query, $filters);
 
+        $typeCount = 0;
+        if (array_key_exists('type', $filters)) {
+            $typeCount = count(array_filter($filters['type']));
+        }
+
         return $query->when($filters['search'] ?? null, function (Builder $query, $search) {
             return $query->where('name', 'like', '%' . $search . '%')
                 ->orWhere('location', 'like', '%' . $search . '%');
         })->when($filters['status'] ?? null, function (Builder $query, $status) {
             return $query->where('status', $status);
-        })->when(count(array_filter($filters['type'])), function (Builder $query) use ($filters) {
+        })->when($typeCount, function (Builder $query) use ($filters) {
             return $query->whereHas('eventType', function ($query) use ($filters) {
                 return $query->whereIn('name', $filters['type']);
             });
